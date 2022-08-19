@@ -8,9 +8,19 @@
 import SwiftUI
 
 struct ContentView: View {
+    let contactData: [ContactData] = Bundle.main.decode("data.json")
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        VStack{
+            ScrollView(.vertical, showsIndicators: false) {
+                VStack(spacing: 18) {
+                    ForEach(contactData) { item in
+                        ContactListItem(contactsData: item)
+                    }
+                }
+            }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 }
 
