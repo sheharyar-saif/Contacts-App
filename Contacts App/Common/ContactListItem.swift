@@ -10,26 +10,17 @@ import SwiftUI
 struct ContactListItem: View {
     let contactsData : ContactData
     var body: some View {
-        HStack(spacing: 12) {
-            Image(systemName: "person")
-                .resizable()
-                .scaledToFill()
-                .frame(width: 80, height: 80)
-                .clipShape(RoundedRectangle(cornerRadius: 6))
+        HStack(spacing: 16){
+            Circle()
+                .foregroundColor(AppColors.primary)
+                .frame(width: 60, height: 60, alignment: .center)
             
-            VStack(alignment: .leading, spacing: 8) {
-                Text(contactsData.firstName)
-                    .foregroundColor(.black)
-//                Text(contactsData.headline)
-//                    .font(.custom(CommonFont.MontserratFontStyle.light.name, size: 10))
-//                    .foregroundColor(AppColors.gray)
-            }
+            Text(contactsData.firstName + " " + contactsData.lastName)
+                .foregroundColor(AppColors.black)
             Spacer()
         }
         .padding()
-//        .overlay(
-//            RoundedRectangle(cornerRadius: 12.0)
-//                .stroke(AppColors.primary, lineWidth: 1))
+        .frame(maxWidth: .infinity, maxHeight: 70)
     }
 }
 
@@ -38,5 +29,6 @@ struct ContactListItem_Previews: PreviewProvider {
     
     static var previews: some View {
         ContactListItem(contactsData: contact[0])
+            .previewLayout(.sizeThatFits)
     }
 }
